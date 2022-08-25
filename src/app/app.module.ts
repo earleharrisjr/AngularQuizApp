@@ -7,13 +7,15 @@ import { QuestionComponent } from './question/question.component';
 import { HeaderComponent } from './header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ChangeBgDirective } from './change-bg.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionComponent,
     HeaderComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ChangeBgDirective
   ],
   imports: [
     BrowserModule,
