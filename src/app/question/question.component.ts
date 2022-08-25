@@ -18,6 +18,7 @@ export class QuestionComponent implements OnInit {
   correctAnswer: number = 0;
   incorrectAnswer: number = 0;
   interval$: any;
+  progress: string = "0";
 
   constructor(private questionService: QuestionService) { }
 
@@ -47,9 +48,13 @@ export class QuestionComponent implements OnInit {
       this.points += 10;
       this.correctAnswer++;
       this.currentQuestion++;
+      this.resetCounter();
+      this.getProgressPercent();
     } else {
       this.currentQuestion++;
       this.incorrectAnswer++;
+      this.resetCounter();
+      this.getProgressPercent();
     }
   }
 
@@ -85,6 +90,12 @@ export class QuestionComponent implements OnInit {
     //maybe i can remove the counter reset below to make this DRY? Looks like calling reset counter will do it
     this.counter = 60;
     this.currentQuestion = 0;
+    this.progress = "0";
+  }
+
+  getProgressPercent() {
+    this.progress = ((this.currentQuestion / this.questionList.length) * 100).toString();
+    return this.progress;
   }
 
 }
