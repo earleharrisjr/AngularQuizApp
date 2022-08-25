@@ -44,7 +44,8 @@
         <div class="d-flex justify-content-between">
             <button [disabled]="currentQuestion===0" class="btn" (click)="previousQuestion()"><i
                     class="fa text-primary fa-chevron-left fa-3x" aria-hidden="true"></i></button>
-            <button class="btn"><i class="fa text-primary fa-refresh fa-3x" aria-hidden="true"></i></button>
+            <button class="btn" (click)="resetQuiz()"><i class="fa text-primary fa-refresh fa-3x"
+                    aria-hidden="true"></i></button>
             <button class="btn" (click)="nextQuestion()"><i class="fa text-primary fa-chevron-right fa-3x"
                     aria-hidden="true"></i></button>
         </div>

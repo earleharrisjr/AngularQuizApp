@@ -24,6 +24,7 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
     this.name = localStorage.getItem("name")!;
     this.getAllQuestions();
+    this.startCounter();
   }
 
   getAllQuestions() {
@@ -53,9 +54,10 @@ export class QuestionComponent implements OnInit {
   }
 
   startCounter() {
+    console.log("counter works")
     this.interval$ = interval(1000)
       .subscribe(val => {
-        this.counter--
+        this.counter--;
         if (this.counter === 0) {
           this.currentQuestion++;
           this.counter = 60;
@@ -76,6 +78,13 @@ export class QuestionComponent implements OnInit {
     this.counter = 60;
     this.startCounter();
   }
-  
+  resetQuiz() {
+    this.resetCounter();
+    this.getAllQuestions();
+    this.points = 0;
+    //maybe i can remove the counter reset below to make this DRY? Looks like calling reset counter will do it
+    this.counter = 60;
+    this.currentQuestion = 0;
+  }
 
 }
