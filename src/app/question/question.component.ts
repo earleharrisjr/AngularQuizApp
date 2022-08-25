@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../service/question.service';
+import { interval } from 'rxjs';
+
 
 @Component({
   selector: 'app-question',
@@ -15,6 +17,7 @@ export class QuestionComponent implements OnInit {
   counter = 60;
   correctAnswer: number = 0;
   incorrectAnswer: number = 0;
+  interval$: any;
 
   constructor(private questionService: QuestionService) { }
 
@@ -48,5 +51,31 @@ export class QuestionComponent implements OnInit {
       this.incorrectAnswer++;
     }
   }
+
+  startCounter() {
+    this.interval$ = interval(1000)
+      .subscribe(val => {
+        this.counter--
+        if (this.counter === 0) {
+          this.currentQuestion++;
+          this.counter = 60;
+        }
+      });
+    setTimeout(() => {
+      this.interval$.unsubscribe()
+    }, 6000000);
+  }
+
+  stopCounter() {
+    this.interval$.unsubscribe();
+    this.counter = 0;
+  }
+
+  resetCounter() {
+    this.stopCounter();
+    this.counter = 60;
+    this.startCounter();
+  }
+  
 
 }
